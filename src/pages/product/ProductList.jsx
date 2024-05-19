@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/layout/Header';
 import ButtonWith from '../../components/common/ButtonWith';
 import ImgComponent from '../../components/common/ImgComponent';
 import Footer from '../../components/layout/Footer';
 import TotallCts from '../../components/common/TotallCts';
 import data from './data';
+import List from '../../components/common/List';
 
 
 const ProductList = () =>{
@@ -43,30 +43,6 @@ const ProductList = () =>{
                 </Footer>
             </div>
         </div>
-    )
-}
-
-const List = ({ i, product }) => {
-    return (
-        <li>
-            <Link to={'/productdetail'}>
-                <section className='list_box'>
-                    <div className='list_thumbnail'>
-                        <ImgComponent className={'img_thumb'} src={'img_thumb_' + i + '.png'} />
-                    </div>
-                    <div className='list_text'>
-                        <dl className='list_name_dl'>
-                            <dt>{product.brand}</dt>
-                            <dd>{product.name}</dd>
-                        </dl>
-                        <div className='list_price'>
-                            <p className='price'>{product.price}</p>
-                            <span className='unit'>CTs</span>
-                        </div>
-                    </div>
-                </section>
-            </Link>
-        </li>
     )
 }
 
