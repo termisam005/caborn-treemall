@@ -5,13 +5,14 @@ import ButtonWith from '../../components/common/ButtonWith';
 import ImgComponent from '../../components/common/ImgComponent';
 import Footer from '../../components/layout/Footer';
 import TotallCts from '../../components/common/TotallCts';
-import data from './data';
+import data1 from './data1';
 import List from '../../components/common/List';
 
 
 const ProductList = () =>{
 
-    const [products, setProducts] = useState(data);
+    const [products, setProducts] = useState(data1);
+    //const [producstMore, setProducstMore] = useState(data2);
 
     useEffect(()=>{
         console.log(products);
@@ -34,6 +35,11 @@ const ProductList = () =>{
                             )
                         })}
                     </ul>
+                    {/* <div className='copy_zone'>
+                        <button type='button' className='btn_copy'>
+                            더보기
+                        </button>
+                    </div> */}
                 </article>
                 <Footer className={'footer'}>
                     <div className='footer_cts'>
