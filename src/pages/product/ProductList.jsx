@@ -13,6 +13,7 @@ import axios from 'axios';
 const ProductList = () =>{
 
     const [products, setProducts] = useState(data1);
+    const [copyStatus, setCopyStatus] = useState(true);
 
     useEffect(()=>{
         console.log(products);
@@ -35,12 +36,13 @@ const ProductList = () =>{
                             )
                         })}
                     </ul>
-                    <div className='copy_zone'>
-                        <button type='button' className='btn_copy' onClick={()=>{
-                            axios.get('https://raw.githubusercontent.com/termisam005/caborn-treemall/master/src/pages/product/data2.js')
+                    <div className={copyStatus? 'copy_zone' : 'hide'}>
+                        <button type='button' className='btn_m btn_box primary' onClick={()=>{
+                            axios.get('https://raw.githubusercontent.com/termisam005/caborn-treemall/master/src/pages/product/data2.json')
                             .then((response)=>{
                                 let copy = [...products, ...response.data];
                                 setProducts(copy);
+                                setCopyStatus(false);
                             })
                         }}>
                             더보기
