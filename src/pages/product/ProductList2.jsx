@@ -6,28 +6,28 @@ import ImgComponent from '../../components/common/ImgComponent';
 import Footer from '../../components/layout/Footer';
 import TotallCts from '../../components/common/TotallCts';
 import data1 from './data1';
-//import data2 from './data2.json';
 import List from '../../components/common/List';
 
 
 const ProductList2 = () =>{
 
     const [products, setProducts] = useState(data1);
+    const [loading, setLoading] = useState(false);
     const [copyStatus, setCopyStatus] = useState(true);
 
     useEffect(()=>{
         console.log(products);
     }, [products]);
 
-    let seeList = () =>{
-        {products.map((a, i)=>{
-            return(
-                <List key={i} product={products[i]} i={i + 1} />
-            )
-        })}
+    const seeList = () =>{
+        setLoading(true);
     }
 
-    const renderProducts = seeList();
+    const renderProducts = products.map((a, i) =>{
+        return(
+            <List key={i} product={products[i]} i={i + 1} />
+        )
+    })
 
     return(
         <div className='wrap'>
@@ -40,12 +40,8 @@ const ProductList2 = () =>{
                 </Header>
                 <article className='product_list'>
                     <ul>
-                        {/* {products.map((a, i)=>{
-                            return(
-                                <List key={i} product={products[i]} i={i + 1} />
-                            )
-                        })} */}
-                        {renderProducts}
+                        {loading? renderProducts : 
+                        null}
                     </ul>
                     <div className={copyStatus? 'copy_zone' : 'hide'}>
                         <button type='button' className='btn_m btn_box primary' onClick={seeList}>
