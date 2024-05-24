@@ -24,18 +24,43 @@ const ProductDetail = () =>{
         setExitPop(false);
     }
 
+    //buy button
+    const [ buyButton, setBuyButton ] = useState(true);
+
+    //totallCts
+    const [ totallCts, setTotallCts ] = useState(2000);
+
     //count
     const [ count, setCount ] = useState(1);
     const [ countResult, setCountResult] = useState(500);
     const plus = () => {
         setCount(count + 1);
         setCountResult(countResult + 500);
+
+        if(countResult + 500 > totallCts){
+            setBuyButton(false);
+        }
     }
     const minus = () => {
         if(count > 1){
             setCount(count - 1);
             setCountResult(countResult - 500);
         }
+
+        if(countResult - 500 <= totallCts){
+            setBuyButton(true);
+        } else {
+            setBuyButton(false);
+        }
+    }
+
+    //collect modal
+    const [collectPop, setCollectPop] = useState(false);
+    const openCollect = () => {
+        setCollectPop(true);
+    }
+    const closeCollect = () => {
+        setCollectPop(false);
     }
 
     return(
@@ -96,11 +121,15 @@ const ProductDetail = () =>{
                 </article>
                 <Footer className={'footer'}>
                     <div className='footer_trans'>
-                        <Button type={'button'} className={'btn_l btn_box primary one_full'} txt={'Buy Now'} onClick={()=>navigator('/productdetailoption')}/>
+                        {
+                            buyButton ? 
+                            <Button type={'button'} className={'btn_l btn_box primary one_full'} txt={'Buy Now'} onClick={()=>navigator('/productdetailoption')}/>
+                            : <Button type={'button'} className={'btn_l btn_box primary one_full disabled'} txt={'Buy Now'} onClick={openCollect}/>
+                        }
                     </div>
                     <div className='footer_cts'>
                         <h2>CarbonTree</h2>
-                        <TotallCts className={'totall_cts'} result={'1,234'} unit={'Cts'} />
+                        <TotallCts className={'totall_cts'} result={totallCts} unit={'Cts'} />
                     </div>
                 </Footer>
             </div>
@@ -114,6 +143,16 @@ const ProductDetail = () =>{
                 <div className='moal_foot'>
                     <Button type={'button'} className={'btn_m btn_box cancel one_full'} txt={'Keep shopping'} onClick={closeExit} />
                     <Button type={'button'} className={'btn_m btn_box primary one_full'} txt={'Exit'} />
+                </div>
+            </Modal>
+            {/* collect modal */}
+            <Modal open={collectPop} close={closeCollect}>
+                <div className='modal_cont'>
+                    <h5 className='modal_title'>Insufficient CTs!</h5>
+                    <p className='modal_txt'>Collect some more CTs.</p>
+                </div>
+                <div className='moal_foot'>
+                    <Button type={'button'} className={'btn_l btn_box primary one_full'} txt={'Close'} onClick={closeCollect} />
                 </div>
             </Modal>
         </div>
