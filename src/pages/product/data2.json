@@ -9,6 +9,18 @@
     "id" : 7,
     "brand" : "BrnadM2",
     "name" : "Product name8",
+    "price" : 700
+  },
+  {
+    "id" : 8,
+    "brand" : "BrnadM1",
+    "name" : "Product name9",
     "price" : 800
+  },
+  {
+    "id" : 9,
+    "brand" : "BrnadM2",
+    "name" : "Product name10",
+    "price" : 900
   }
 ]
